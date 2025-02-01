@@ -29,23 +29,124 @@
             transform: translateY(0);
         }
 
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-up {
+            opacity: 0;
+            animation: fadeUp 0.6s ease-out forwards;
+        }
+
+        .animate-scale {
+            opacity: 0;
+            animation: scaleIn 0.5s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(0,0,0,0.2);
+        }
+
+        .header-scroll {
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo-hover {
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-hover:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-hover {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn-hover:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 0;
+            padding-bottom: 120%;
+            background: rgba(255,255,255,0.1);
+            transform: translate(-50%, -50%) scale(0);
+            border-radius: 50%;
+            opacity: 0;
+            transition: transform 0.5s ease, opacity 0.3s ease;
+        }
+
+        .btn-hover:hover:after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
         @media (max-width: 768px) {
             .menu-desktop {
                 display: none;
+            }
+            
+            .animate-fade-up {
+                animation-duration: 0.4s;
+            }
+            
+            .service-card:hover {
+                transform: translateY(-3px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 <body class="min-h-screen bg-white">
-    <!-- Header/Navigation -->
-    <header class="fixed w-full bg-white/90 backdrop-blur-sm z-50">
+    <header class="fixed w-full bg-white/90 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <img src="img/logo.png" alt="AFRM Studio" class="h-8">
+                    <img src="img/logo.png" alt="AFRM Studio" class="h-8 logo-hover">
                 </div>
                 
-                <!-- Desktop Navigation -->
                 <div class="menu-desktop hidden md:flex space-x-8">
                     <a href="#servicios" class="text-gray-600 hover:text-black transition-colors">Servicios</a>
                     <a href="#proyectos" class="text-gray-600 hover:text-black transition-colors">Proyectos</a>
@@ -53,7 +154,6 @@
                     <a href="#contacto" class="text-gray-600 hover:text-black transition-colors">Contacto</a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <button class="md:hidden" id="menuButton">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
@@ -61,7 +161,6 @@
                 </button>
             </div>
 
-            <!-- Mobile Navigation -->
             <div class="menu-mobile md:hidden bg-white absolute left-0 w-full px-6 py-4" id="mobileMenu">
                 <a href="#servicios" class="block py-2 text-gray-600 hover:text-black transition-colors">Servicios</a>
                 <a href="#proyectos" class="block py-2 text-gray-600 hover:text-black transition-colors">Proyectos</a>
@@ -71,20 +170,19 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="pt-32 pb-20 px-6">
         <div class="container mx-auto">
-            <div class="max-w-3xl">
+            <div class="max-w-3xl animate-fade-up">
                 <h1 class="text-6xl font-bold mb-6">
                     Creamos experiencias online memorables
                 </h1>
-                <p class="text-xl text-gray-600 mb-8">
+                <p class="text-xl text-gray-600 mb-8 delay-1">
                     ¡Hola! Soy Alex Reyna, parte del equipo de AFRM Studio. Nos apasiona ayudar a emprendedores y empresas a crear una presencia online auténtica y efectiva.
                 </p>
-                <p class="text-xl text-gray-600 mb-8">
+                <p class="text-xl text-gray-600 mb-8 delay-2">
                     En AFRM Studio, ofrecemos soluciones digitales diseñadas para ayudarte a destacar en el mundo digital, desde diseño web personalizado hasta estrategias de branding que realmente conectan con tu audiencia.
                 </p>
-                <a href="#contacto" class="inline-flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors">
+                <a href="#contacto" class="inline-flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors btn-hover delay-3">
                     Comienza tu proyecto
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
@@ -94,28 +192,27 @@
         </div>
     </section>
 
-    <!-- Servicios Section -->
     <section id="servicios" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Nuestros Servicios</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
                     <h3 class="text-xl font-bold mb-4">Diseño Web Personalizado</h3>
                     <p class="text-gray-600">Creamos sitios web adaptados a tu estilo y necesidades, asegurando una experiencia visual y funcional impecable</p>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
                     <h3 class="text-xl font-bold mb-4">Landing Pages Optimizadas</h3>
                     <p class="text-gray-600">Diseño de landing pages que no solo atraen visitantes, sino que convierten. ¡Potencia tus ventas!</p>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
                     <h3 class="text-xl font-bold mb-4">SEO y Marketing Digital</h3>
                     <p class="text-gray-600">Mejoramos tu visibilidad en los motores de búsqueda y te ayudamos a atraer más clientes a tu negocio</p>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
                     <h3 class="text-xl font-bold mb-4">Consultoría en Branding</h3>
                     <p class="text-gray-600">Desarrollamos tu marca online con un enfoque estratégico que te posiciona como líder en tu industria</p>
                 </div>
-                <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="service-card bg-white p-8 rounded-lg shadow-sm">
                     <h3 class="text-xl font-bold mb-4">Creación de Logos</h3>
                     <p class="text-gray-600">Creamos logos personalizados que capturan la esencia de tu marca, asegurando una identidad visual coherente y única</p>
                 </div>
@@ -123,27 +220,26 @@
         </div>
     </section>
 
-    <!-- Proceso Section -->
     <section id="proceso" class="py-20">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Nuestro Proceso</h2>
             <div class="grid md:grid-cols-4 gap-8">
-                <div class="text-center">
+                <div class="text-center service-card">
                     <div class="text-6xl font-bold text-gray-200 mb-4">01</div>
                     <h3 class="text-xl font-bold mb-2">Descubrimiento</h3>
                     <p class="text-gray-600">Entendemos tus objetivos y necesidades</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center service-card">
                     <div class="text-6xl font-bold text-gray-200 mb-4">02</div>
                     <h3 class="text-xl font-bold mb-2">Estrategia</h3>
                     <p class="text-gray-600">Planificamos la mejor solución</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center service-card">
                     <div class="text-6xl font-bold text-gray-200 mb-4">03</div>
                     <h3 class="text-xl font-bold mb-2">Diseño</h3>
                     <p class="text-gray-600">Creamos la experiencia visual</p>
                 </div>
-                <div class="text-center">
+                <div class="text-center service-card">
                     <div class="text-6xl font-bold text-gray-200 mb-4">04</div>
                     <h3 class="text-xl font-bold mb-2">Desarrollo</h3>
                     <p class="text-gray-600">Implementamos la solución</p>
@@ -152,7 +248,6 @@
         </div>
     </section>
 
-    <!-- Proyectos Section -->
     <section id="proyectos" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Proyectos Destacados</h2>
@@ -205,7 +300,6 @@
         </div>
     </section>
 
-    <!-- Contacto Section -->
     <section id="contacto" class="py-20">
         <div class="container mx-auto px-6">
             <div class="max-w-2xl mx-auto text-center">
@@ -232,7 +326,7 @@
                     <div class="space-y-4">
                         <button
                             type="submit"
-                            class="w-full px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+                            class="w-full px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors btn-hover"
                         >
                             Enviar mensaje
                         </button>
@@ -243,7 +337,7 @@
                                     href="https://wa.link/a71w1f"
                                     target="_blank"
                                     rel="noopener noreferrer" 
-                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors flex items-center"
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors flex items-center btn-hover"
                                 >
                                     WhatsApp
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -252,13 +346,13 @@
                                 </a>
                                 <a 
                                     href="mailto:info@afrmstudio.it"
-                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors"
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors btn-hover"
                                 >
                                     Email
                                 </a>
                                 <a 
                                     href="tel:+34642374570"
-                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors"
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors btn-hover"
                                 >
                                     Llamar
                                 </a>
@@ -270,7 +364,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-12 bg-black text-white">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8">
@@ -313,7 +406,34 @@
     </footer>
 
     <script>
-        // Menú móvil
+        function handleIntersection(entries, observer) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }
+
+        const observer = new IntersectionObserver(handleIntersection, {
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
+
+        document.querySelectorAll('.service-card, h2, .project-card').forEach(el => {
+            observer.observe(el);
+            el.style.opacity = '0';
+        });
+
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('header-scroll');
+            } else {
+                header.classList.remove('header-scroll');
+            }
+        });
+
         const menuButton = document.getElementById('menuButton');
         const mobileMenu = document.getElementById('mobileMenu');
 
@@ -325,7 +445,6 @@
                 '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>';
         });
 
-        // Cerrar menú al hacer click en un enlace
         document.querySelectorAll('.menu-mobile a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
@@ -333,7 +452,6 @@
             });
         });
 
-        // Scroll suave para los enlaces de navegación
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
