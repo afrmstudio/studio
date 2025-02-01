@@ -1,0 +1,284 @@
+import React, { useState } from 'react';
+import { Menu, X, ChevronDown, ArrowRight, Check } from 'lucide-react';
+
+const LandingPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header/Navigation */}
+      <header className="fixed w-full bg-white/90 backdrop-blur-sm z-50">
+        <nav className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <img 
+                src="img/logo.png" 
+                alt="AFRM Studio" 
+                className="h-8"
+              />
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              <a href="#servicios" className="text-gray-600 hover:text-black transition-colors">Servicios</a>
+              <a href="#proyectos" className="text-gray-600 hover:text-black transition-colors">Proyectos</a>
+              <a href="#proceso" className="text-gray-600 hover:text-black transition-colors">Proceso</a>
+              <a href="#contacto" className="text-gray-600 hover:text-black transition-colors">Contacto</a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden" onClick={toggleMenu}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {isMenuOpen && (
+            <div className="md:hidden py-4 space-y-4">
+              <a href="#servicios" className="block text-gray-600 hover:text-black transition-colors">Servicios</a>
+              <a href="#proyectos" className="block text-gray-600 hover:text-black transition-colors">Proyectos</a>
+              <a href="#proceso" className="block text-gray-600 hover:text-black transition-colors">Proceso</a>
+              <a href="#contacto" className="block text-gray-600 hover:text-black transition-colors">Contacto</a>
+            </div>
+          )}
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-6">
+        <div className="container mx-auto">
+          <div className="max-w-3xl">
+            <h1 className="text-6xl font-bold mb-6">
+              Creamos experiencias online memorables
+            </h1>
+            <p className="text-xl text-gray-600 mb-8">
+              ¡Hola! Soy Alex Reyna, parte del equipo de AFRM Studio. Nos apasiona ayudar a emprendedores y empresas a crear una presencia online auténtica y efectiva.
+            </p>
+            <p className="text-xl text-gray-600 mb-8">
+              En AFRM Studio, ofrecemos soluciones digitales diseñadas para ayudarte a destacar en el mundo digital, desde diseño web personalizado hasta estrategias de branding que realmente conectan con tu audiencia.
+            </p>
+            <a 
+              href="#contacto"
+              className="inline-flex items-center px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            >
+              Comienza tu proyecto
+              <ArrowRight className="ml-2" size={20} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Servicios Section */}
+      <section id="servicios" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Nuestros Servicios</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "Diseño Web Personalizado",
+                description: "Creamos sitios web adaptados a tu estilo y necesidades, asegurando una experiencia visual y funcional impecable"
+              },
+              {
+                title: "Landing Pages Optimizadas",
+                description: "Diseño de landing pages que no solo atraen visitantes, sino que convierten. ¡Potencia tus ventas!"
+              },
+              {
+                title: "SEO y Marketing Digital",
+                description: "Mejoramos tu visibilidad en los motores de búsqueda y te ayudamos a atraer más clientes a tu negocio"
+              },
+              {
+                title: "Consultoría en Branding",
+                description: "Desarrollamos tu marca online con un enfoque estratégico que te posiciona como líder en tu industria"
+              },
+              {
+                title: "Creación de Logos",
+                description: "Creamos logos personalizados que capturan la esencia de tu marca, asegurando una identidad visual coherente y única"
+              }
+            ].map((service, index) => (
+              <div key={index} className="bg-white p-8 rounded-lg shadow-sm">
+                <h3 className="text-xl font-bold mb-4">{service.title}</h3>
+                <p className="text-gray-600">{service.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Proceso Section */}
+      <section id="proceso" className="py-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Nuestro Proceso</h2>
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              {
+                step: "01",
+                title: "Descubrimiento",
+                description: "Entendemos tus objetivos y necesidades"
+              },
+              {
+                step: "02",
+                title: "Estrategia",
+                description: "Planificamos la mejor solución"
+              },
+              {
+                step: "03",
+                title: "Diseño",
+                description: "Creamos la experiencia visual"
+              },
+              {
+                step: "04",
+                title: "Desarrollo",
+                description: "Implementamos la solución"
+              }
+            ].map((phase, index) => (
+              <div key={index} className="text-center">
+                <div className="text-6xl font-bold text-gray-200 mb-4">{phase.step}</div>
+                <h3 className="text-xl font-bold mb-2">{phase.title}</h3>
+                <p className="text-gray-600">{phase.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Proyectos Section */}
+      <section id="proyectos" className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <h2 className="text-4xl font-bold mb-12 text-center">Proyectos Destacados</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[1, 2, 3, 4].map((project) => (
+              <div key={project} className="relative group">
+                <div className="aspect-video bg-gray-200 rounded-lg overflow-hidden">
+                  <img 
+                    src={`/api/placeholder/600/400`}
+                    alt={`Proyecto ${project}`}
+                    className="w-full h-full object-cover transition-transform group-hover:scale-105"
+                  />
+                </div>
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="text-white text-center">
+                    <h3 className="text-xl font-bold mb-2">Proyecto {project}</h3>
+                    <p>Ver detalles</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contacto Section */}
+      <section id="contacto" className="py-20">
+        <div className="container mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-4xl font-bold mb-6">¿Listo para empezar?</h2>
+            <p className="text-xl text-gray-600 mb-8">
+              Cuéntanos sobre tu proyecto y te contactaremos en 24 horas
+            </p>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Nombre"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+              />
+              <input
+                type="email"
+                placeholder="Email"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+              />
+              <textarea
+                placeholder="Mensaje"
+                rows="4"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
+              ></textarea>
+              <div className="space-y-4">
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+                >
+                  Enviar mensaje
+                </button>
+                <div className="text-gray-600">
+                  O contáctanos directamente:
+                  <div className="flex justify-center space-x-4 mt-2">
+                    <a 
+                      href="https://wa.link/a71w1f"
+                      target="_blank"
+                      rel="noopener noreferrer" 
+                      className="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors flex items-center"
+                    >
+                      WhatsApp
+                      <ArrowRight className="ml-1" size={16} />
+                    </a>
+                    <a 
+                      href="mailto:info@afrmstudio.it"
+                      className="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors"
+                    >
+                      Email
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 bg-black text-white">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <div className="flex items-center mb-4">
+                <img 
+                  src="img/logo.png" 
+                  alt="AFRM Studio" 
+                  className="h-8"
+                />
+              </div>
+              <p className="text-gray-400">
+                Diseño web profesional y creativo para empresas modernas
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Servicios</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Diseño Web</li>
+                <li>E-commerce</li>
+                <li>Branding Digital</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Contacto</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="mailto:info@afrmstudio.it" className="hover:text-white transition-colors">info@afrmstudio.it</a></li>
+                <li><a href="tel:+34642374570" className="hover:text-white transition-colors">+34 642 374 570</a></li>
+                <li><a href="https://wa.link/a71w1f" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center">
+                  WhatsApp
+                  <ArrowRight className="ml-1" size={16} />
+                </a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold mb-4">Social</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Instagram</li>
+                <li>LinkedIn</li>
+                <li>Behance</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+            <p>&copy; 2025 AFRM Studio | Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default LandingPage;
