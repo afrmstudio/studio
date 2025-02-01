@@ -243,4 +243,105 @@
                                     href="https://wa.link/a71w1f"
                                     target="_blank"
                                     rel="noopener noreferrer" 
-                                    class="px-6 py-2
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors flex items-center"
+                                >
+                                    WhatsApp
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                                <a 
+                                    href="mailto:info@afrmstudio.it"
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors"
+                                >
+                                    Email
+                                </a>
+                                <a 
+                                    href="tel:+34642374570"
+                                    class="px-6 py-2 border border-black text-black rounded-full hover:bg-black hover:text-white transition-colors"
+                                >
+                                    Llamar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black text-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <img src="img/logo.png" alt="AFRM Studio" class="h-8 mb-4 invert">
+                    <p class="text-gray-400">
+                        Diseño web profesional y creativo para empresas modernas
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Servicios</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Diseño Web Personalizado</li>
+                        <li>Landing Pages</li>
+                        <li>SEO y Marketing Digital</li>
+                        <li>Branding</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="mailto:info@afrmstudio.it" class="hover:text-white transition-colors">info@afrmstudio.it</a></li>
+                        <li><a href="tel:+34642374570" class="hover:text-white transition-colors">+34 642 374 570</a></li>
+                        <li><a href="https://wa.link/a71w1f" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">WhatsApp</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Social</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Instagram</li>
+                        <li>LinkedIn</li>
+                        <li>Behance</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 AFRM Studio | Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menú móvil
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const isOpen = mobileMenu.classList.contains('active');
+            menuButton.innerHTML = isOpen ? 
+                '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>' :
+                '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>';
+        });
+
+        // Cerrar menú al hacer click en un enlace
+        document.querySelectorAll('.menu-mobile a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>';
+            });
+        });
+
+        // Scroll suave para los enlaces de navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
